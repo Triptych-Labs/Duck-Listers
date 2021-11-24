@@ -1,0 +1,4 @@
+requests
+simplejson
+pandas
+numpy
