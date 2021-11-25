@@ -84,9 +84,8 @@ if __name__ == "__main__":
         _owners = GetListings(len(epoch), min(epoch))
         owners = numpy.append(owners, _owners)
 
-    owners_df = pandas.DataFrame(owners, columns=["owner"])
-    owners_df = pandas.unique(owners_df["owner"])
-
-    print(owners_df)
-    print(len(owners_df))
-
+    owners_listing_count_df = pandas.DataFrame(owners, columns=["owner"]).value_counts().reset_index(name='count')
+    print(owners_listing_count_df)
+    print("Most duck listed per owner: "+str(owners_listing_count_df['count'].max()))
+    print("Total unique owner: "+str(len(owners_listing_count_df)))
+    print("Total listed ducks: "+owners_listing_count_df.sum().drop('owner').to_string(index = False))
